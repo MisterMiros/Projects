@@ -24,7 +24,7 @@ import org.junit.runners.Suite;
  * @author Miros
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({karan.findPiToNthDigitTest.class})
+@Suite.SuiteClasses({karan.findPiToNthDigitTest.class, karan.findEToNthDigitTest.class})
 public class NumbersTest {
     
 }
