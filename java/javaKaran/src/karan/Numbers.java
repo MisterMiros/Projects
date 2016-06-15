@@ -19,6 +19,8 @@ package karan;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -66,7 +68,7 @@ public class Numbers {
 
         return value.multiply(multiplier);
     }
-    
+
     public static BigDecimal findEToNthDigit(int n)
             throws IllegalArgumentException {
         if (n < 1) {
@@ -79,14 +81,87 @@ public class Numbers {
             return new BigDecimal(2);
         }
         BigDecimal e = BigDecimal.ONE, fact = BigDecimal.ONE;
-        for (int i = 1; i < n+5; i++) {
+        for (int i = 1; i < n + 5; i++) {
             fact = fact.multiply(new BigDecimal(i));
             e = e.add(e_iteration(i, fact));
         }
         return e.round(new MathContext(n, RoundingMode.FLOOR));
     }
-    
+
     public static BigDecimal e_iteration(int i, BigDecimal fact) {
         return BigDecimal.ONE.divide(fact, new MathContext(1000, RoundingMode.FLOOR));
+    }
+
+    public static long[] fibonacciToNth(int n)
+            throws IllegalArgumentException {
+        if (n > 50 || n < 1) {
+            throw new IllegalArgumentException("argument is too big or too small (" + n + ")");
+        }
+        if (n == 1) {
+            return new long[]{1};
+        }
+        Numbers.FibonacciFactory factory = new Numbers.FibonacciFactory();
+        long[] sequence = new long[n];
+        sequence[0] = 1;
+        sequence[1] = 1;
+        while (factory.position() < n) {
+            sequence[factory.position()] = factory.next();
+        }
+        return sequence;
+    }
+
+    public static long[] fibonacciToLimit(long limit)
+            throws IllegalArgumentException {
+        if (limit < 1) {
+            throw new IllegalArgumentException("argument is lesser than 1 (" + limit + ")");
+        }
+        Numbers.FibonacciFactory factory = new Numbers.FibonacciFactory();
+        ArrayList<Long> sequence = new ArrayList<Long>();
+        sequence.add(1L);
+        sequence.add(1L);
+        while (factory.next() <= limit) {
+            sequence.add(factory.current());
+        }
+        long[] result = new long[sequence.size()];
+        Iterator<Long> it = sequence.iterator();
+        for (int i = 0; it.hasNext(); i++) {
+            result[i] = it.next().longValue();
+        }
+        return result;
+    }
+
+    public static class FibonacciFactory {
+
+        private long prev = 1;
+        private long cur = 1;
+        private int position = 2;
+
+        public FibonacciFactory() {
+
+        }
+
+        public int position() {
+            return position;
+        }
+
+        public long current() {
+            return cur;
+        }
+
+        public long previous() {
+            return prev;
+        }
+
+        public long next() {
+            cur += prev;
+            prev = cur - prev;
+            position++;
+            return cur;
+        }
+
+        public void reset() {
+            prev = cur = 1;
+            position = 2;
+        }
     }
 }
