@@ -29,7 +29,7 @@ public class Numbers {
     public static BigDecimal findPiToNthDigit(int n)
             throws IllegalArgumentException {
         if (n < 1) {
-            throw new IllegalArgumentException("negative argument (" + n + ")");
+            throw new IllegalArgumentException("negative or zero argument (" + n + ")");
         }
         if (n > 1000) {
             throw new IllegalArgumentException("argument is greater than 1000 (" + n + ")");
@@ -65,5 +65,28 @@ public class Numbers {
         BigDecimal value = BigDecimal.ONE.divide((new BigDecimal(16)).pow(i));
 
         return value.multiply(multiplier);
+    }
+    
+    public static BigDecimal findEToNthDigit(int n)
+            throws IllegalArgumentException {
+        if (n < 1) {
+            throw new IllegalArgumentException("negative or zero argument (" + n + ")");
+        }
+        if (n > 1000) {
+            throw new IllegalArgumentException("argument is greater than 1000 (" + n + ")");
+        }
+        if (n == 1) {
+            return new BigDecimal(2);
+        }
+        BigDecimal e = BigDecimal.ONE, fact = BigDecimal.ONE;
+        for (int i = 1; i < n+5; i++) {
+            fact = fact.multiply(new BigDecimal(i));
+            e = e.add(e_iteration(i, fact));
+        }
+        return e.round(new MathContext(n, RoundingMode.FLOOR));
+    }
+    
+    public static BigDecimal e_iteration(int i, BigDecimal fact) {
+        return BigDecimal.ONE.divide(fact, new MathContext(1000, RoundingMode.FLOOR));
     }
 }
