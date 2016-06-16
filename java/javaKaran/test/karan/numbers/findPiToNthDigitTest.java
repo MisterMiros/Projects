@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package karan;
+package karan.numbers;
 
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -48,7 +48,7 @@ public class findPiToNthDigitTest {
         };
         for (int i = 0; i < digits.length; i++) {
             System.out.println("find first " + digits[i] + " digits of pi");
-            BigDecimal pi_act = Numbers.findPiToNthDigit(digits[i]);
+            BigDecimal pi_act = Pi.findPiToNthDigit(digits[i]);
             assertEquals(pi_exp[i], pi_act);
         }
     }
@@ -58,13 +58,13 @@ public class findPiToNthDigitTest {
         System.out.println("should throw an exception");
         try {
             System.out.println("when given argument lesser than 1");
-            Numbers.findPiToNthDigit(0);
+            Pi.findPiToNthDigit(0);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }
         try {
             System.out.println("when given argument greater than 1000");
-            Numbers.findPiToNthDigit(1001);
+            Pi.findPiToNthDigit(1001);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package karan;
+package karan.numbers;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -24,7 +24,7 @@ import org.junit.runners.Suite;
  * @author Miros
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({karan.findPiToNthDigitTest.class, karan.findEToNthDigitTest.class, karan.fibonacciSequenceTest.class})
+@Suite.SuiteClasses({karan.numbers.findPiToNthDigitTest.class, karan.numbers.findEToNthDigitTest.class, karan.numbers.fibonacciSequenceTest.class})
 public class NumbersTest {
     
 }

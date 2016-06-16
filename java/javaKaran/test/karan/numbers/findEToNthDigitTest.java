@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package karan;
+package karan.numbers;
 
 import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
@@ -46,7 +46,7 @@ public class findEToNthDigitTest {
         };
         for (int i = 0; i < digits.length; i++) {
             System.out.println("find first " + digits[i] + " digits of pi");
-            BigDecimal e_act = Numbers.findEToNthDigit(digits[i]);
+            BigDecimal e_act = E.findEToNthDigit(digits[i]);
             assertEquals(e_exp[i], e_act);
         }
     }
@@ -56,13 +56,13 @@ public class findEToNthDigitTest {
         System.out.println("should throw an exception");
         try {
             System.out.println("when given argument lesser than 1");
-            Numbers.findEToNthDigit(0);
+            E.findEToNthDigit(0);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }
         try {
             System.out.println("when given argument greater than 1000");
-            Numbers.findEToNthDigit(1001);
+            E.findEToNthDigit(1001);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }

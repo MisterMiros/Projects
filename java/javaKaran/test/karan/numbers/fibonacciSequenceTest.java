@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package karan;
+package karan.numbers;
 
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -47,7 +47,7 @@ public class fibonacciSequenceTest {
     public void findToNthTest() {
         int[] ns = new int[]{2, 5, 10, 50};
         for (int i = 0; i < ns.length; i++) {
-            assertArrayEquals(sequences[i], Numbers.fibonacciToNth(ns[i]));
+            assertArrayEquals(sequences[i], Fibonacci.fibonacciToNth(ns[i]));
         }
     }
     
@@ -55,7 +55,7 @@ public class fibonacciSequenceTest {
     public void findToLimitTest() {
         long[] limits = new long[] {1, 5, 55, 12586269025L};
         for (int i = 0; i < limits.length; i++) {
-            assertArrayEquals(sequences[i], Numbers.fibonacciToLimit(limits[i]));
+            assertArrayEquals(sequences[i], Fibonacci.fibonacciToLimit(limits[i]));
         }
     }
     
@@ -64,17 +64,17 @@ public class fibonacciSequenceTest {
         System.out.println("should throw an exception");
         try {
             System.out.println("when given argument lesser than 1");
-            Numbers.fibonacciToNth(0);
+            Fibonacci.fibonacciToNth(0);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }try {
-            Numbers.fibonacciToLimit(0);
+            Fibonacci.fibonacciToLimit(0);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }
         try {
             System.out.println("when given argument for nth search greater than 50");
-            Numbers.fibonacciToNth(51);
+            Fibonacci.fibonacciToNth(51);
             fail("expected IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }
