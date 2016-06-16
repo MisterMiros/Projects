@@ -27,7 +27,7 @@ import java.util.Iterator;
  * @author Miros
  */
 public class Numbers {
-
+    /* BBP formula */
     public static BigDecimal findPiToNthDigit(int n)
             throws IllegalArgumentException {
         if (n < 1) {
@@ -54,13 +54,8 @@ public class Numbers {
         BigDecimal denom4 = k8.add(new BigDecimal(6));
 
         BigDecimal denom = denom1.multiply(denom2).multiply(denom3).multiply(denom4);
-
-        BigDecimal numer1 = denom2.multiply(denom3).multiply(denom4).multiply(new BigDecimal(4));
-        BigDecimal numer2 = denom1.multiply(denom3).multiply(denom4).multiply(new BigDecimal(2));
-        BigDecimal numer3 = denom1.multiply(denom2).multiply(denom4);
-        BigDecimal numer4 = denom1.multiply(denom2).multiply(denom3);
-
-        BigDecimal numer = numer1.subtract(numer2).subtract(numer3).subtract(numer4);
+                
+        BigDecimal numer = k8.pow(2).multiply(new BigDecimal(15)).add(k8.multiply(new BigDecimal(151))).add(new BigDecimal(376));
 
         BigDecimal multiplier = numer.divide(denom, new MathContext(1000, RoundingMode.FLOOR));
 
