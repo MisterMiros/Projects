@@ -24,7 +24,12 @@ import org.junit.runners.Suite;
  * @author Miros
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({karan.numbers.findPiToNthDigitTest.class, karan.numbers.findEToNthDigitTest.class, karan.numbers.fibonacciSequenceTest.class})
+@Suite.SuiteClasses({
+    karan.numbers.findPiToNthDigitTest.class, 
+    karan.numbers.findEToNthDigitTest.class, 
+    karan.numbers.fibonacciSequenceTest.class,
+    karan.numbers.primeFactorizationTest.class
+})
 public class NumbersTest {
     
 }
