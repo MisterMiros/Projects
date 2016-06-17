@@ -25,13 +25,21 @@ import java.util.ArrayList;
 public class PrimeTools {
 
     public static boolean isPrime(int n) {
-        return false;
+        if (n % 2 == 0 && n != 2) {
+            return false;
+        }
+        for (int i = 3; i < n; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static int[] factorize(int n) {
         ArrayList<Integer> primes = new ArrayList<>();
-        n = firstTwoPrimes(n, primes);
-        for (int i = 5, divider; i <= n; i += 2) {
+        n /= primeDivider(n, 2, primes);
+        for (int i = 3, divider; i <= n; i += 2) {
             divider = primeDivider(n, i, primes);
             n /= divider;
         }
@@ -39,9 +47,6 @@ public class PrimeTools {
     }
 
     private static int primeDivider(int n, int i, ArrayList<Integer> primes) {
-        if (i % 3 == 0 && i != 3) {
-            return 1;
-        }
         int divider = 1;
         while (n % i == 0) {
             n /= i;
@@ -53,31 +58,33 @@ public class PrimeTools {
         return divider;
     }
 
-    private static int firstTwoPrimes(int n, ArrayList<Integer> primes) {
-        int divider = primeDivider(n, 2, primes);
-        n /= divider;
-        divider = primeDivider(n, 3, primes);
-        n /= divider;
-        return n;
-    }
-
     public static class PrimeIterator {
 
-        private int cur = 0;
+        private int cur = 1;
 
         public PrimeIterator() {
 
         }
 
         public int current() {
-            return 0;
+            return cur;
         }
 
         public int next() {
-            return 0;
+            if (cur == 1) {
+                cur = 2;
+                return 2;
+            }
+            if (cur == 2) {
+                cur = 3;
+                return 3;
+            }
+            while (!isPrime(cur += 2)) {}
+            return cur;
         }
 
         public void reset() {
+            cur = 1;
         }
     }
 
