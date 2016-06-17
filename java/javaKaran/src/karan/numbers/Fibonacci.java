@@ -88,12 +88,7 @@ public class Fibonacci {
         while (factory.next() <= limit) {
             sequence.add(factory.current());
         }
-        long[] result = new long[sequence.size()];
-        Iterator<Long> it = sequence.iterator();
-        for (int i = 0; it.hasNext(); i++) {
-            result[i] = it.next();
-        }
-        return result;
+        return CommonTools.longListToArray(sequence);
     }
     
 }
